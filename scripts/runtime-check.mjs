@@ -2,7 +2,7 @@ import { chromium } from 'playwright-core';
 
 const base = process.env.QA_BASE || 'http://127.0.0.1:4173/';
 const edge = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
-const routes = ['/', '/tobey-maguire', '/andrew-garfield', '/tom-holland', '/aranhaverso', '/quadrinhos', '/comparativo', '/cronologia', '/por-tras-da-mascara', '/fontes'];
+const routes = ['/', '/tobey-maguire', '/andrew-garfield', '/tom-holland', '/aranhaverso', '/quadrinhos', '/comparativo', '/cronologia', '/por-tras-da-mascara', '/fontes', '/nao-existe'];
 const browser = await chromium.launch({ executablePath: edge, headless: true });
 const context = await browser.newContext({ viewport: { width: 430, height: 932 } });
 const checks = [];
@@ -14,10 +14,15 @@ for (const route of routes) {
   page.on('pageerror', error => errors.push(error.message));
   const response = await page.goto(`${base}#${route}`, { waitUntil: 'networkidle', timeout: 30000 });
   await page.locator('h1').waitFor({ state: 'visible' });
-  await page.evaluate(() => Promise.all([...document.images].map(image => image.complete ? true : new Promise(resolveImage => {
-    image.addEventListener('load', resolveImage, { once: true });
-    image.addEventListener('error', resolveImage, { once: true });
-  }))));
+  await page.evaluate(async () => {
+    document.querySelectorAll('img').forEach(image => { image.loading = 'eager'; });
+    for (let y = 0; y < document.documentElement.scrollHeight; y += 700) {
+      scrollTo(0, y);
+      await new Promise(resolve => setTimeout(resolve, 30));
+    }
+    scrollTo(0, 0);
+  });
+  await page.waitForFunction(() => [...document.images].every(image => image.complete), undefined, { timeout: 10000 });
   const metrics = await page.evaluate(() => ({
     h1: document.querySelectorAll('h1').length,
     broken: [...document.images].filter(image => image.naturalWidth === 0).length,
