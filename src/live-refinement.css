@@ -1,0 +1,147 @@
+/* Structural corrections and profile-specific art direction. */
+body { overflow-x: visible; }
+main, .compareTable { overflow: visible; }
+
+.headlineStrip {
+  width: 100%;
+  max-width: none;
+  margin: 2rem 0 5rem;
+  transform: none;
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+  padding-block: 1.7rem;
+}
+
+.villainTape {
+  width: 100%;
+  max-width: none;
+  margin: 4rem 0;
+  transform: none;
+  overflow: visible;
+  flex-wrap: wrap;
+  align-items: stretch;
+  padding: clamp(1.2rem, 3vw, 2.5rem) max(4vw, 1rem);
+  gap: .65rem;
+}
+.villainTape span { display: grid; place-items: center; }
+.villainTape b {
+  flex: 1 1 230px;
+  white-space: normal;
+  padding: .8rem 1rem;
+  border: 1px solid #1115;
+  line-height: 1.08;
+}
+
+.comicGrid .image { position: relative; top: auto; }
+.chapterNav, .filters, .comicFilters { width: 100%; max-width: 100%; contain: inline-size; }
+
+.eraSignature {
+  min-height: 86px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: .35rem 2rem;
+  padding: 1rem max(5vw, 1rem);
+  border-block: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.eraSignature b { font: 800 clamp(1.8rem, 3vw, 3.2rem)/.8 'Barlow Condensed'; letter-spacing: .04em; }
+.eraSignature span { font-size: .62rem; letter-spacing: .18em; }
+.eraSignature small { grid-column: 1 / -1; font-size: .58rem; letter-spacing: .16em; color: #b8bbc3; }
+
+.profile.tobey .eraSignature {
+  color: #171717;
+  background: #ded8c8;
+  background-image: repeating-linear-gradient(0deg, #1110 0 3px, #1110 3px 5px, #11108 6px);
+  border-block: 8px double #171717;
+}
+.profile.tobey .eraSignature::after { content: 'EXTRA'; position: absolute; right: 5vw; font: 900 6rem/.8 'Barlow Condensed'; color: #b8202920; transform: rotate(-5deg); }
+.profile.tobey .identityDeck article { background-image: linear-gradient(135deg, #ffffff08, transparent 50%); border-top: 4px double #d0d0d066; }
+.profile.tobey .filmChapters > article { border-top: 3px double #aeb2ba55; }
+.profile.tobey .filmChapters article > .image { clip-path: none; border: 6px solid #d6d6d6; box-shadow: 0 0 0 1px #111, 10px 10px #631117; transform: rotate(-.5deg); }
+.profile.tobey .returnPanel { background: radial-gradient(circle at 75% 30%, #d9d9d918, transparent 30%), #171718; border-block: 10px double #ae2730; }
+
+.profile.andrew { background-image: linear-gradient(90deg, #0db1ff0a 1px, transparent 1px), linear-gradient(#0db1ff0a 1px, transparent 1px); background-size: 44px 44px; }
+.profile.andrew .eraSignature { color: #98e6ff; background: linear-gradient(90deg, #06111d, #072b42); border-block-color: #21bfff; box-shadow: inset 0 0 35px #0aa7ff25; }
+.profile.andrew .eraSignature::before { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 42%, #47d5ff24 43%, transparent 44%); }
+.profile.andrew .identityDeck article { background: linear-gradient(160deg, #06243a, #07111d 60%); border-top: 2px solid #16b9ff; }
+.profile.andrew .filmChapters article > .image { border: 1px solid #48d7ff; box-shadow: 0 0 30px #009fe944; clip-path: polygon(0 0, 92% 0, 100% 18%, 100% 100%, 8% 100%, 0 82%); }
+.profile.andrew .filmChapters > article > span { text-shadow: 0 0 18px #28c7ff; }
+.profile.andrew .returnPanel { background: linear-gradient(125deg, #00131f, #072d45); border-block: 1px solid #21bfff; }
+
+.profile.tom .eraSignature { background: linear-gradient(90deg, #7d1019, #101729 54%, #101729); border-block: 3px solid #e22e3b; }
+.profile.tom .eraSignature::after { content: '01  •  02  •  03  •  04'; position: absolute; right: 4vw; bottom: .8rem; color: #fff4; letter-spacing: .6em; }
+.profile.tom .identityDeck article { background: linear-gradient(150deg, #10182d, #090d18 55%); border-top: 4px solid #e52d3d; }
+.profile.tom .filmChapters { position: relative; }
+.profile.tom .filmChapters::before { content: ''; position: absolute; left: calc(7vw + 42px); top: 26rem; bottom: 9rem; width: 2px; background: linear-gradient(#e72c3d, #3b85ff, #ffbd31); opacity: .65; }
+.profile.tom .filmChapters article > .image { clip-path: polygon(0 0, 100% 0, 100% 86%, 92% 100%, 0 100%); border-bottom: 6px solid #e72c3d; }
+
+.relationsStage {
+  height: 760px;
+  min-height: 0;
+  overflow: hidden;
+}
+.relationsStage > .image { height: 760px; }
+.relationsStage > .image img { transition: opacity .18s ease; }
+.relationOptions { display: grid; }
+.relationOptions button {
+  border: 0;
+  border-top: 1px solid var(--line);
+  color: #fff;
+  background: transparent;
+  text-align: left;
+  padding: 1rem 0;
+  cursor: pointer;
+}
+.relationOptions button span { font: 700 1.25rem 'Barlow Condensed'; text-transform: uppercase; }
+.relationOptions button p { color: #aaa; margin: .7rem 0 0; max-width: 52ch; }
+.relationOptions button[aria-selected='true'] span { color: var(--accent); }
+
+.brandNewDay {
+  min-height: 760px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr);
+  background: #07090d;
+  border-block: 1px solid #ffffff21;
+}
+.brandNewDay > .image { min-height: 620px; }
+.brandNewDay > .image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 60%, #07090d); }
+.brandNewDay > div { align-self: center; padding: clamp(2rem, 5vw, 6rem); }
+.brandNewDay h2 { font: 800 clamp(4rem, 7vw, 7rem)/.78 'Barlow Condensed'; text-transform: uppercase; margin: 1rem 0 1.5rem; color: #f21e31; text-shadow: 3px 3px #123d81; }
+.brandNewDay > div > p:not(.eyebrow) { color: #c1c5ce; line-height: 1.7; }
+.liveGross { display: grid; margin: 2rem 0; padding: 1.2rem; border: 1px solid #f2b928; background: #f2b9280c; }
+.liveGross span, .liveGross small { font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; }
+.liveGross strong { font: 800 3.8rem/.9 'Barlow Condensed'; color: #f2b928; margin: .35rem 0; }
+.bndSources { display: flex; flex-direction: column; align-items: flex-start; gap: .65rem; }
+
+@media (max-width: 900px) {
+  .heroTrio { left: 0; right: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .heroTrio .image:nth-child(1), .heroTrio .image:nth-child(2) { transform: none; margin-inline: 0; }
+  .heroTrio .image { clip-path: none; }
+  .eraSignature { grid-template-columns: 1fr; }
+  .eraSignature span { line-height: 1.5; }
+  .relationsStage { height: auto; overflow: visible; grid-template-columns: 1fr; }
+  .relationsStage > .image { height: min(62vw, 500px); }
+  .relationsStage > div { min-height: 590px; }
+  .brandNewDay { grid-template-columns: 1fr; }
+  .brandNewDay > .image { min-height: 52vw; }
+  .brandNewDay > .image::after { background: linear-gradient(0deg, #07090d, transparent 38%); }
+  .profile.tom .filmChapters::before { display: none; }
+}
+
+@media (max-width: 520px) {
+  .headlineStrip { clip-path: none; padding: 1.2rem; }
+  .heroTrio { grid-template-columns: repeat(3, 1fr); }
+  .heroTrio img { object-position: 50% center !important; }
+  .villainTape b { flex-basis: 100%; }
+  .eraSignature b { font-size: 2rem; }
+  .relationsStage > .image { height: 370px; }
+  .relationsStage > div { min-height: 620px; }
+  .brandNewDay > .image { min-height: 320px; }
+  .brandNewDay h2 { font-size: clamp(3.2rem, 17vw, 4.6rem); }
+  .liveGross strong { font-size: 3rem; }
+  .statusLegend { grid-template-columns: 1fr; }
+  .marqueeEra > header h2 { font-size: clamp(3.2rem, 17vw, 5rem); overflow-wrap: anywhere; }
+  .profile.tobey .filmChapters article > .image { box-shadow: 0 0 0 1px #111, 3px 3px #631117; }
+  .legacy h2 { overflow-wrap: anywhere; }
+}
