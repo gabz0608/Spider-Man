@@ -1,0 +1,9 @@
+main{overflow:clip}
+.headlineStrip,.villainTape{max-width:calc(100% + 2rem)}
+.comicGrid article{min-width:0}
+.compareTable{overflow:clip}
+
+@media(max-width:900px){
+  .comparePage .pageHero h1{font-size:clamp(2.4rem,11vw,4.2rem);hyphens:auto}
+  .compareTable>.compareHead{display:none}
+}
