@@ -424,35 +424,76 @@ const profileChapters: Record<
 };
 
 const filmMedia: Record<ProfileKey, string[]> = {
-  tobey: ["tobey-01", "tobey-06", "tobey-07", "tom-08"],
-  andrew: ["andrew-01", "andrew-04", "tom-08"],
-  tom: ["tom-02", "tom-01", "tom-07", "tom-04", "tom-08", "bnd-banner"],
+  tobey: ["tobey-01", "tobey-06", "tobey-08", "nwh-three-peters"],
+  andrew: ["andrew-2012-scene", "andrew-2014-scene", "nwh-three-peters"],
+  tom: [
+    "tom-02",
+    "tom-03",
+    "tom-infinity-war",
+    "tom-05",
+    "nwh-three-peters",
+    "bnd-banner",
+  ],
 };
 const relationMedia: Record<ProfileKey, string[]> = {
-  tobey: ["tobey-03", "tobey-04", "tobey-07", "tobey-06"],
-  andrew: ["andrew-01", "andrew-05", "andrew-03", "andrew-04"],
-  tom: ["tom-01", "tom-06", "tom-07", "tom-08"],
+  tobey: ["tobey-03", "tobey-06", "nwh-three-peters"],
+  andrew: ["andrew-2012-scene", "andrew-2014-scene", "nwh-three-peters"],
+  tom: ["tom-tony-peter", "tom-mj-ned", "nwh-three-peters"],
 };
 const signatures = {
-  tobey: ["THE DAILY BUGLE", "RESPONSIBILITY · SACRIFICE · 35MM", "EDIÇÃO RAIMI / NOVA YORK EM PRATA"],
-  andrew: ["OSCORP FIELD LOG", "VELOCITY · VOLTAGE · LOSS", "ARQUIVO AMAZING / SISTEMA INSTÁVEL"],
-  tom: ["MCU PHASE LOG", "NEIGHBORHOOD · LEGACY · RESET", "QUEENS / NOVO DIA EM CURSO"],
+  tobey: [
+    "THE DAILY BUGLE",
+    "RESPONSIBILITY · SACRIFICE · 35MM",
+    "EDIÇÃO RAIMI / NOVA YORK EM PRATA",
+  ],
+  andrew: [
+    "OSCORP FIELD LOG",
+    "VELOCITY · VOLTAGE · LOSS",
+    "ARQUIVO AMAZING / SISTEMA INSTÁVEL",
+  ],
+  tom: [
+    "MCU PHASE LOG",
+    "NEIGHBORHOOD · LEGACY · RESET",
+    "QUEENS / NOVO DIA EM CURSO",
+  ],
 } as const;
 const byId = (id: string, fallback: MediaItem) =>
   media.find((item) => item.id === id) || fallback;
 
-function RelationArchive({ profileKey, beats, fallback }: { profileKey: ProfileKey; beats: readonly (readonly [string, string])[]; fallback: MediaItem }) {
+function RelationArchive({
+  profileKey,
+  beats,
+  fallback,
+}: {
+  profileKey: ProfileKey;
+  beats: readonly (readonly [string, string])[];
+  fallback: MediaItem;
+}) {
   const [active, setActive] = useState(0);
   return (
     <section id="relacoes" className="relationsStage">
-      <Img item={byId(relationMedia[profileKey][active], fallback)} />
+      <Img
+        key={relationMedia[profileKey][active]}
+        item={byId(relationMedia[profileKey][active], fallback)}
+      />
       <div>
         <p className="eyebrow">GRAVIDADE HUMANA</p>
         <h2>Ninguém balança sozinho.</h2>
-        <div className="relationOptions" role="tablist" aria-label="Relações centrais">
+        <div
+          className="relationOptions"
+          role="tablist"
+          aria-label="Relações centrais"
+        >
           {beats.map((relation, index) => (
-            <button key={relation[0]} role="tab" aria-selected={active === index} onClick={() => setActive(index)}>
-              <span>{String(index + 1).padStart(2, "0")} — {relation[0]}</span>
+            <button
+              key={relation[0]}
+              role="tab"
+              aria-selected={active === index}
+              onClick={() => setActive(index)}
+            >
+              <span>
+                {String(index + 1).padStart(2, "0")} — {relation[0]}
+              </span>
               {active === index && <p>{relation[1]}</p>}
             </button>
           ))}
@@ -464,7 +505,75 @@ function RelationArchive({ profileKey, beats, fallback }: { profileKey: ProfileK
 
 function EraSignature({ profileKey }: { profileKey: ProfileKey }) {
   const signature = signatures[profileKey];
-  return <aside className="eraSignature" aria-label={`Identidade visual de ${profileKey}`}><b>{signature[0]}</b><span>{signature[1]}</span><small>{signature[2]}</small></aside>;
+  return (
+    <aside
+      className="eraSignature"
+      aria-label={`Identidade visual de ${profileKey}`}
+    >
+      <b>{signature[0]}</b>
+      <span>{signature[1]}</span>
+      <small>{signature[2]}</small>
+    </aside>
+  );
+}
+
+const artifactData = {
+  tobey: {
+    code: "CONTATO 36 / P. PARKER",
+    title: "A cidade cabe num negativo.",
+    text: "Entre a objetiva e a manchete, Peter registra a mesma Manhattan que precisa atravessar. O trabalho precário vira arquivo visual do próprio heroísmo.",
+    tags: ["DAILY BUGLE", "F/2.8", "ROLL 04"],
+    images: ["tobey-02", "tobey-06"],
+  },
+  andrew: {
+    code: "OSCORP / BIO-ENHANCEMENT 42",
+    title: "Toda resposta abre outro arquivo.",
+    text: "Genética, energia e arquitetura corporativa formam uma investigação sem linha reta. A interface organiza dados; a eletricidade denuncia quando o sistema perdeu o controle.",
+    tags: ["CROSS-SPECIES", "GRID 7B", "VOLTAGE LIVE"],
+    images: ["andrew-02", "andrew-2014-scene"],
+  },
+  tom: {
+    code: "MIDTOWN / CASE 616",
+    title: "O bairro virou evidência.",
+    text: "Escola, tecnologia Stark e cobertura do Clarim disputam a imagem pública de Peter. Depois de No Way Home, o arquivo existe — mas o nome dentro dele desapareceu.",
+    tags: ["QUEENS", "DODC REVIEW", "IDENTITY: REDACTED"],
+    images: ["tom-03", "tom-09"],
+  },
+} as const;
+
+function UniverseArtifacts({
+  profileKey,
+  fallback,
+}: {
+  profileKey: ProfileKey;
+  fallback: MediaItem;
+}) {
+  const artifact = artifactData[profileKey];
+  return (
+    <section
+      className={`universeArtifacts artifacts-${profileKey}`}
+      aria-label="Arquivo visual do universo"
+    >
+      <header>
+        <small>{artifact.code}</small>
+        <h2>{artifact.title}</h2>
+        <p>{artifact.text}</p>
+      </header>
+      <div className="artifactTags">
+        {artifact.tags.map((tag, index) => (
+          <span key={tag}>
+            {String(index + 1).padStart(2, "0")} / {tag}
+          </span>
+        ))}
+      </div>
+      <div className="artifactPhotos">
+        {artifact.images.map((id) => (
+          <Img key={id} item={byId(id, fallback)} />
+        ))}
+      </div>
+      <i aria-hidden="true">616</i>
+    </section>
+  );
 }
 
 function BrandNewDay() {
@@ -474,9 +583,21 @@ function BrandNewDay() {
       <div>
         <p className="eyebrow">CAPÍTULO 04 · EM EXIBIÇÃO</p>
         <h2>Brand New Day</h2>
-        <p>Sem a rede social que sustentava sua vida anterior, Peter volta a Manhattan em tempo integral. A imagem oficial troca a tutela tecnológica por corpo, vertigem e cidade: um novo começo que visualmente retorna ao essencial.</p>
-        <div className="liveGross"><span>BILHETERIA MUNDIAL</span><strong>US$ 2 bi+</strong><small>estimativa de estúdio · 16 ago 2026</small></div>
-        <div className="bndSources"><SourceLink id="sonyTom" /><SourceLink id="apBnd" /></div>
+        <p>
+          Sem a rede social que sustentava sua vida anterior, Peter volta a
+          Manhattan em tempo integral. A imagem oficial troca a tutela
+          tecnológica por corpo, vertigem e cidade: um novo começo que
+          visualmente retorna ao essencial.
+        </p>
+        <div className="liveGross">
+          <span>BILHETERIA MUNDIAL</span>
+          <strong>US$ 2 bi+</strong>
+          <small>estimativa de estúdio · 16 ago 2026</small>
+        </div>
+        <div className="bndSources">
+          <SourceLink id="sonyTom" />
+          <SourceLink id="apBnd" />
+        </div>
       </div>
     </section>
   );
@@ -492,6 +613,14 @@ function ProfilePage({ profile: p }: { profile: Profile }) {
       : imgs[0];
   return (
     <article className={`profile ${key}`}>
+      <nav className="chapterNav" aria-label="Capítulos">
+        <a href="#origem">Origem</a>
+        <a href="#peter">Peter</a>
+        <a href="#filmes">Filmes</a>
+        <a href="#relacoes">Relações</a>
+        <a href="#traje">Traje & cidade</a>
+        <a href="#legado">Legado</a>
+      </nav>
       <section className="profileHero">
         <Img item={hero} eager />
         <div>
@@ -506,14 +635,6 @@ function ProfilePage({ profile: p }: { profile: Profile }) {
         </div>
       </section>
       <EraSignature profileKey={key} />
-      <nav className="chapterNav" aria-label="Capítulos">
-        <a href="#origem">Origem</a>
-        <a href="#peter">Peter</a>
-        <a href="#filmes">Filmes</a>
-        <a href="#relacoes">Relações</a>
-        <a href="#traje">Traje & cidade</a>
-        <a href="#legado">Legado</a>
-      </nav>
       <section id="origem" className="identityDeck">
         <article>
           <span>01</span>
@@ -554,6 +675,7 @@ function ProfilePage({ profile: p }: { profile: Profile }) {
         </blockquote>
         <Img item={imgs[3]} />
       </section>
+      <UniverseArtifacts profileKey={key} fallback={imgs[0]} />
       <section id="filmes" className="filmChapters">
         <header>
           <p className="eyebrow">FILME A FILME</p>
@@ -1099,11 +1221,19 @@ function Industry() {
                         <h3>{f.title}</h3>
                         <p>
                           <span>ORÇAMENTO</span>
-                          <b>{f.budget === null ? "não publicado" : money(f.budget)}</b>
+                          <b>
+                            {f.budget === null
+                              ? "não publicado"
+                              : money(f.budget)}
+                          </b>
                         </p>
                         <p>
                           <span>MUNDIAL</span>
-                          <strong>{"ongoing" in f ? `${money(f.worldwide)}+` : money(f.worldwide)}</strong>
+                          <strong>
+                            {"ongoing" in f
+                              ? `${money(f.worldwide)}+`
+                              : money(f.worldwide)}
+                          </strong>
                         </p>
                       </div>
                     </article>
@@ -1140,8 +1270,8 @@ function Industry() {
       <p className="method">
         Valores históricos são nominais, sem ajuste de inflação, e foram
         consultados em {verified}. Brand New Day está em exibição e usa a
-        estimativa de estúdio reportada pela AP; seu total pode continuar mudando.{" "}
-        <SourceLink id="boxOffice" /> <SourceLink id="apBnd" />
+        estimativa de estúdio reportada pela AP; seu total pode continuar
+        mudando. <SourceLink id="boxOffice" /> <SourceLink id="apBnd" />
       </p>
     </article>
   );

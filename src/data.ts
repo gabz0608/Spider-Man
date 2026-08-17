@@ -232,20 +232,16 @@ export const profileEditorial = {
       "Perseverar não é suportar tudo calado: é continuar escolhendo cuidado, inclusive quando o reconhecimento não vem.",
     beats: [
       [
-        "Ben & May",
-        "Ben oferece a frase que Peter só compreenderá por meio da perda; May transforma essa lembrança em conduta cotidiana.",
-      ],
-      [
         "Mary Jane",
         "O amor começa idealizado e se torna real quando precisa conviver com ausências, medo e escolhas imperfeitas.",
       ],
       [
-        "Harry",
-        "Amizade e ressentimento crescem juntos até que a verdade sobre Norman cobra uma última decisão.",
+        "Otto Octavius",
+        "O mentor científico se torna um espelho: inteligência sem responsabilidade pode transformar ambição em catástrofe.",
       ],
       [
-        "Clarim Diário",
-        "J. Jonah Jameson converte o herói em manchete, renda precária e problema público ao mesmo tempo.",
+        "Os três Peters",
+        "No encontro multiversal, experiência deixa de ser superioridade e se transforma em escuta, limite e cuidado.",
       ],
     ],
   },
@@ -264,16 +260,12 @@ export const profileEditorial = {
         "Parceira intelectual e afetiva, ela participa das decisões e também paga o preço das promessas que Peter não consegue cumprir.",
       ],
       [
-        "Tia May",
-        "A casa é feita de cuidado e silêncio. May sustenta Peter mesmo quando as perguntas sobre seus pais ocupam todo o espaço.",
+        "Max Dillon",
+        "A solidão ignorada de Max se converte em eletricidade, espetáculo e ressentimento diante do herói que ele admirava.",
       ],
       [
-        "Os pais",
-        "A busca por Richard Parker dá motor à investigação, mas não oferece a reparação emocional que Peter espera encontrar.",
-      ],
-      [
-        "Franquia interrompida",
-        "O segundo filme deixa caminhos abertos; a série foi encerrada quando a estratégia cinematográfica mudou e o personagem entrou no MCU.",
+        "Os três Peters",
+        "O retorno permite que Andrew converta memória de perda em presença: ele se reconhece nos outros sem apagar a própria história.",
       ],
     ],
   },
@@ -293,16 +285,12 @@ export const profileEditorial = {
         "Mentoria, acesso e expectativa. Peter precisa aprender a separar inspiração de validação.",
       ],
       [
-        "Tia May",
-        "Lar, acolhimento e a formulação decisiva da responsabilidade em seu momento mais doloroso.",
-      ],
-      [
         "MJ & Ned",
         "Os amigos dão verdade e humor à vida dupla; perdê-los torna concreto o preço da escolha final.",
       ],
       [
-        "Happy & Strange",
-        "Um oferece memória afetiva de May; o outro transforma um pedido impulsivo em conflito sobre consentimento e consequência.",
+        "Os três Peters",
+        "Tobey e Andrew oferecem experiência sem tomar a decisão de Tom; a rede existe para que cada um faça a própria escolha.",
       ],
     ],
   },
