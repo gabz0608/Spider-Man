@@ -424,21 +424,29 @@ const profileChapters: Record<
 };
 
 const filmMedia: Record<ProfileKey, string[]> = {
-  tobey: ["tobey-01", "tobey-06", "tobey-08", "nwh-three-peters"],
-  andrew: ["andrew-2012-scene", "andrew-2014-scene", "nwh-three-peters"],
+  tobey: ["tobey-01", "tobey-06", "tobey-08", "user-nwh-tobey"],
+  andrew: [
+    "andrew-2012-scene",
+    "user-andrew-electro-replacement",
+    "user-nwh-andrew",
+  ],
   tom: [
     "tom-02",
     "tom-03",
     "tom-infinity-war",
     "tom-05",
-    "nwh-three-peters",
+    "user-nwh-tom",
     "bnd-banner",
   ],
 };
 const relationMedia: Record<ProfileKey, string[]> = {
-  tobey: ["tobey-03", "tobey-06", "nwh-three-peters"],
-  andrew: ["andrew-2012-scene", "andrew-2014-scene", "nwh-three-peters"],
-  tom: ["tom-tony-peter", "tom-mj-ned", "nwh-three-peters"],
+  tobey: ["tobey-03", "tobey-06", "user-nwh-tobey"],
+  andrew: [
+    "andrew-2012-scene",
+    "user-andrew-electro-replacement",
+    "user-nwh-andrew",
+  ],
+  tom: ["tom-tony-peter", "tom-mj-ned", "user-nwh-tom"],
 };
 const signatures = {
   tobey: [
@@ -530,7 +538,7 @@ const artifactData = {
     title: "Toda resposta abre outro arquivo.",
     text: "Genética, energia e arquitetura corporativa formam uma investigação sem linha reta. A interface organiza dados; a eletricidade denuncia quando o sistema perdeu o controle.",
     tags: ["CROSS-SPECIES", "GRID 7B", "VOLTAGE LIVE"],
-    images: ["andrew-02", "andrew-2014-scene"],
+    images: ["andrew-02", "user-andrew-electro-replacement"],
   },
   tom: {
     code: "MIDTOWN / CASE 616",
